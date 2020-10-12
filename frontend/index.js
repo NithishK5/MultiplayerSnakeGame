@@ -24,3 +24,30 @@ function keydown(e) {
 }
 
 init();
+
+function paintGame(state) {
+    ctx.fillStyle = BG_COLOUR;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+    const food = state.food;
+    const gridsize = state.gridsize;
+    const size = canvas.width / gridsize;
+  
+    ctx.fillStyle = FOOD_COLOUR;
+    ctx.fillRect(food.x * size, food.y * size, size, size);
+  
+    paintPlayer(state.players[0], size, SNAKE_COLOUR);
+    paintPlayer(state.players[1], size, 'red');
+
+  }
+
+function paintPlayer(playerState, size, colour) {
+    const snake = playerState.snake;
+  
+    ctx.fillStyle = colour;
+    for (let cell of snake) {
+      ctx.fillRect(cell.x * size, cell.y * size, size, size);
+
+    }
+    
+  }
